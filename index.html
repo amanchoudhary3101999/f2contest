@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter</title>
+    <style>
+
+body {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 50px;
+            font-family: Arial, sans-serif;
+            background-color: black;
+        }
+        .counter-container {
+            text-align: center;
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .counter {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color:white;
+            margin-left: -80px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-left: -100px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+        }
+        .increment {
+            background-color: white;
+            color: black;
+        }
+        .decrement {
+            background-color: white;
+            color: black;
+        }
+        .clear {
+            background-color: white;
+            color: black;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+            margin-left: -190px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-container">
+        <h1><big>Counter using HTML</big></h1>
+        <div id="counter" class="counter"><u><small>Your Current Count is : 0</small></u></div>
+        <div id="error" class="error">Error : Cannot go below 0</div><br>
+        <div class="buttons">
+            <button id="increment" class="increment">Increment</button>
+            <button id="decrement" class="decrement">Decrement</button>
+            <button id="clear" class="clear" style="display: none;">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for counter functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const counter = document.getElementById('counter');
+            const incrementButton = document.getElementById('increment');
+            const decrementButton = document.getElementById('decrement');
+            const clearButton = document.getElementById('clear');
+            const error = document.getElementById('error');
+
+            let count = 0;
+
+            incrementButton.addEventListener('click', () => {
+                count++;
+                counter.innerHTML = count;
+                error.style.display = 'none';
+                if (count > 0) {
+                    clearButton.style.display = 'block';
+                }
+            });
+
+            decrementButton.addEventListener('click', () => {
+                if (count > 0) {
+                    count--;
+                    counter.innerHTML = count;
+                    error.style.display = 'none';
+                    if (count === 0) {
+                        clearButton.style.display = 'none';
+                    }
+                } else {
+                    error.style.display = 'block';
+                }
+            });
+
+            clearButton.addEventListener('click', () => {
+                count = 0;
+                counter.innerHTML = count;
+                clearButton.style.display = 'none';
+                error.style.display = 'none';
+            });
+        });
+    </script>
+
+
+    
+</body>
+</html>
